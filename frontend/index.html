@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payal Wansing | UI/UX Designer</title>
+    <meta
+      name="description"
+      content="Portfolio of Payal Wansing, a UI/UX Designer crafting intuitive digital experiences."
+    />
+    <meta property="og:title" content="Payal Wansing | UI/UX Designer" />
+    <meta
+      property="og:description"
+      content="Portfolio of Payal Wansing, a UI/UX Designer crafting intuitive digital experiences."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Applied before React mounts so the correct theme is visible on the
+      // very first paint — otherwise the page flashes light before the
+      // ThemeProvider's effect runs.
+      (function () {
+        try {
+          var stored = localStorage.getItem("pw_theme");
+          var isDark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (isDark) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
