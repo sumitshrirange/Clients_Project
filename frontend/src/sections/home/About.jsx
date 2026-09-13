@@ -6,7 +6,7 @@ import FloatingDoodle from "../../components/ui/FloatingDoodle";
 import { BadgeRing, CurvedArrow, Sparkle, StarBurst, DottedCircle, ZigZag } from "../../components/illustrations/Doodles";
 import { useSiteContent } from "../../layouts/PublicLayout";
 
-const StatCard = ({ icon: Icon, label, value, rotate, delay }) => (
+const StatCard = ({ icon: Icon, label, value, rotate, delay, gradient }) => (
   <motion.div
     initial={{ opacity: 0, y: 20, rotate: rotate - 3 }}
     whileInView={{ opacity: 1, y: 0, rotate }}
@@ -18,16 +18,16 @@ const StatCard = ({ icon: Icon, label, value, rotate, delay }) => (
     <div className="w-10 h-10 rounded-xl bg-lavender dark:bg-primary/15 grid place-items-center shrink-0">
       <Icon className="w-4.5 h-4.5 text-primary dark:text-primary-light" />
     </div>
-    <div>
-      <p className="font-mono font-bold text-xl text-ink dark:text-canvas leading-none">{value}</p>
-      <p className="text-xs text-ink-faint dark:text-canvas/50 mt-1">{label}</p>
+    <div className="relative z-10">
+      <p className="font-mono font-bold text-lg text-ink dark:text-canvas leading-none">{value}</p>
+      <p className="text-xs text-ink-faint dark:text-canvas/50 mt-1.5 font-medium">{label}</p>
     </div>
   </motion.div>
 );
 
 const About = ({ profile, stats }) => {
   const { openResumeModal } = useSiteContent();
-  const imageUrl = profile?.profileImage?.url;
+  const imageUrl = profile?.cutoutImage?.url;
 
   return (
     <section id="about" className="relative py-24 sm:py-32 bg-gradient-to-b from-canvas-tint via-lavender/35 to-mint/10 dark:from-surface-dark/40 dark:via-transparent dark:to-surface-dark/20 overflow-hidden">
@@ -66,26 +66,30 @@ const About = ({ profile, stats }) => {
         <div className="mt-16 grid lg:grid-cols-[0.85fr_1.15fr] gap-14 items-start">
           <div className="relative">
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.9, y: 24 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="rounded-4xl overflow-hidden aspect-[4/5] bg-lavender dark:bg-surface-dark-alt border border-white dark:border-line-dark shadow-card rotate-[-2deg]"
+              className="relative"
             >
-              {imageUrl ? (
-                <img src={imageUrl} alt={profile?.name || "Payal Wansing"} className="w-full h-full object-cover" />
-              ) : (
-                <div className="w-full h-full grid place-items-center text-primary/40 font-display font-extrabold text-6xl">
-                  PW
-                </div>
-              )}
+              <div className="absolute inset-0 rounded-4xl bg-gradient-to-br from-primary/20 via-purple/10 to-mint/15 dark:from-primary-light/10 dark:via-primary-light/5 dark:to-mint/10 blur-2xl -z-10 transform translate-y-4" />
+              <div className="rounded-4xl overflow-hidden aspect-[4/5] bg-lavender dark:bg-surface-dark-alt border-2 border-white dark:border-line-dark shadow-xl rotate-[-2deg] relative">
+                {imageUrl ? (
+                  <img src={imageUrl} alt={profile?.name || "Payal Wansing"} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full grid place-items-center text-primary/40 font-display font-extrabold text-6xl">
+                    PW
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
             </motion.div>
 
-            <div className="mt-6 flex flex-wrap gap-4">
-              <StatCard icon={Briefcase} label="Experience" value={stats?.experience ?? "—"} rotate={-2} delay={0.1} />
-              <StatCard icon={Wrench} label="Skills" value={stats?.skills ?? "—"} rotate={2} delay={0.2} />
-              <StatCard icon={GraduationCap} label="Education" value={stats?.education ?? "—"} rotate={-1} delay={0.3} />
-              <StatCard icon={Award} label="Certificates" value={stats?.certificates ?? "—"} rotate={1} delay={0.4} />
+            <div className="mt-8 flex flex-wrap gap-4">
+              <StatCard icon={Briefcase} label="Experience" value={stats?.experience ?? "—"} rotate={-2} delay={0.1} gradient="bg-gradient-to-br from-blue to-cyan" />
+              <StatCard icon={Wrench} label="Skills" value={stats?.skills ?? "—"} rotate={2} delay={0.2} gradient="bg-gradient-to-br from-primary to-purple" />
+              <StatCard icon={GraduationCap} label="Education" value={stats?.education ?? "—"} rotate={-1} delay={0.3} gradient="bg-gradient-to-br from-mint to-green-400" />
+              <StatCard icon={Award} label="Certificates" value={stats?.certificates ?? "—"} rotate={1} delay={0.4} gradient="bg-gradient-to-br from-orange to-rose" />
             </div>
           </div>
 
@@ -95,10 +99,31 @@ const About = ({ profile, stats }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-5 text-ink-soft dark:text-canvas/70 text-base sm:text-lg leading-relaxed"
+              className="space-y-6"
             >
-              <p>{profile?.introduction || "I'm a UI/UX designer who enjoys turning ambiguous problems into clear, usable interfaces — spending as much time understanding a user's context as I do refining a layout."}</p>
-              <p>{profile?.philosophy || "Good design earns its simplicity. I design with intention: every screen, flow, and interaction should have a reason for existing."}</p>
+              <div className="group relative p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-lavender/40 via-white to-mint/20 dark:from-surface-dark/60 dark:via-surface-dark dark:to-surface-dark/40 border border-line/50 dark:border-line-dark/50 backdrop-blur-sm shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-purple/5 dark:from-primary-light/5 dark:to-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative z-10">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary dark:bg-primary-light mt-2 shrink-0" />
+                    <p className="text-base sm:text-lg text-ink dark:text-canvas/90 leading-relaxed font-medium">
+                      {profile?.introduction || "I'm a UI/UX designer who enjoys turning ambiguous problems into clear, usable interfaces — spending as much time understanding a user's context as I do refining a layout."}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="group relative p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-mint/30 via-white to-blue/15 dark:from-surface-dark/50 dark:via-surface-dark dark:to-surface-dark/30 border border-line/50 dark:border-line-dark/50 backdrop-blur-sm shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-purple/5 to-mint/5 dark:from-purple/10 dark:to-mint/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative z-10">
+                  <div className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-mint dark:bg-mint mt-2 shrink-0" />
+                    <p className="text-base sm:text-lg text-ink dark:text-canvas/90 leading-relaxed font-medium">
+                      {profile?.philosophy || "Good design earns its simplicity. I design with intention: every screen, flow, and interaction should have a reason for existing."}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </motion.div>
 
             <motion.div
@@ -106,7 +131,7 @@ const About = ({ profile, stats }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="mt-8 relative w-fit"
+              className="mt-10 relative w-fit"
             >
               <Button variant="primary" onClick={openResumeModal}>
                 <FileText className="w-4 h-4" /> View Resume

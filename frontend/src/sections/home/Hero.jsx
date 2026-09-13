@@ -154,12 +154,12 @@ const Hero = ({ profile }) => {
             )}
           </div>
 
-          <FloatingCard className="-left-8 top-6 hidden sm:flex items-center gap-2 z-20" rotate={-6} delay={0.3}>
+          <FloatingCard className="-left-8 top-6 flex items-center gap-2 z-20" rotate={-6} delay={0.3}>
             <Figma className="w-4 h-4 text-primary" />
             <span className="text-xs font-semibold text-ink-soft dark:text-canvas/70 pr-1">Figma</span>
           </FloatingCard>
 
-          <FloatingCard className="-right-6 top-1/3 hidden sm:block w-32 z-20" rotate={5} delay={0.5}>
+          <FloatingCard className="-right-6 top-1/3 block w-32 z-20" rotate={5} delay={0.5}>
             <div className="flex items-center gap-1.5 mb-2">
               <span className="w-2 h-2 rounded-full bg-red-300" />
               <span className="w-2 h-2 rounded-full bg-amber-300" />
@@ -172,20 +172,20 @@ const Hero = ({ profile }) => {
             </div>
           </FloatingCard>
 
-          <FloatingCard className="-left-4 bottom-10 hidden sm:flex items-center gap-2 z-20 bg-cream dark:bg-surface-dark" rotate={-3} delay={0.7}>
+          <FloatingCard className="-left-4 bottom-10 flex items-center gap-2 z-20 bg-cream dark:bg-surface-dark" rotate={-3} delay={0.7}>
             <StickyNote className="w-4 h-4 text-ink-soft dark:text-canvas/70" />
             <span className="text-xs font-medium text-ink-soft dark:text-canvas/70">User-first</span>
           </FloatingCard>
 
-          <FloatingCard className="right-4 -bottom-6 hidden sm:flex items-center justify-center w-11 h-11 z-20" rotate={0} delay={0.9}>
+          <FloatingCard className="right-4 -bottom-6 flex items-center justify-center w-11 h-11 z-20" rotate={0} delay={0.9}>
             <MousePointer2 className="w-4 h-4 text-primary" />
           </FloatingCard>
 
-          <FloatingCard className="-right-9 bottom-16 hidden lg:flex items-center justify-center w-11 h-11 z-20" rotate={-8} delay={1.1}>
+          <FloatingCard className="-right-9 bottom-16 flex items-center justify-center w-11 h-11 z-20" rotate={-8} delay={1.1}>
             <Headphones className="w-4 h-4 text-primary" />
           </FloatingCard>
 
-          <FloatingCard className="-left-10 top-1/2 hidden lg:flex items-center justify-center w-10 h-10 z-20" rotate={9} delay={1.3}>
+          <FloatingCard className="-left-10 top-1/2 flex items-center justify-center w-10 h-10 z-20" rotate={9} delay={1.3}>
             <PenTool className="w-4 h-4 text-primary" />
           </FloatingCard>
         </motion.div>

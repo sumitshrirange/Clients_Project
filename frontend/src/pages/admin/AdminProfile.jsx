@@ -118,9 +118,9 @@ const AdminProfile = () => {
           <Field label="Profile Image">
             <FileInput accept="image/*" onChange={(e) => setImages((i) => ({ ...i, profileImage: e.target.files[0] }))} />
           </Field>
-          {/* <Field label="Cutout Image">
+          <Field label="About Image">
             <FileInput accept="image/*" onChange={(e) => setImages((i) => ({ ...i, cutoutImage: e.target.files[0] }))} />
-          </Field> */}
+          </Field>
         </div>
 
         <div className="flex justify-end">

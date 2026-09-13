@@ -206,9 +206,9 @@ const ProjectFormDrawer = ({ open, initialData, onClose, onSubmit, submitting })
               <Field label="Visual Design">
                 <TextArea value={form.process.visualDesign} onChange={(e) => updateProcess("visualDesign", e.target.value)} />
               </Field>
-              <Field label="Prototype">
+              {/* <Field label="Prototype">
                 <TextArea value={form.process.prototype} onChange={(e) => updateProcess("prototype", e.target.value)} />
-              </Field>
+              </Field> */}
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <Field label="User Flow Images">
