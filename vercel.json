@@ -11,7 +11,7 @@
   },
   "rewrites": [
     {
-      "source": "/deployment(/.*)?",
+      "source": "/api(/.*)?",
       "destination": {
         "type": "service",
         "service": "backend"
