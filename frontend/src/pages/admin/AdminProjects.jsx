@@ -103,13 +103,13 @@ const AdminProjects = () => {
                 <p className="font-semibold text-ink dark:text-canvas text-sm truncate">{project.title}</p>
                 <p className="text-xs text-ink-faint dark:text-canvas/50">{project.category}</p>
               </div>
-              <button
+              {/* <button
                 onClick={() => openEdit(project)}
                 className="p-2 text-ink-soft dark:text-canvas/60 hover:text-primary dark:hover:text-primary-light"
                 aria-label={`Edit ${project.title}`}
               >
                 <Pencil className="w-4 h-4" />
-              </button>
+              </button> */}
               <button
                 onClick={() => setDeleteTarget(project)}
                 className="p-2 text-ink-soft dark:text-canvas/60 hover:text-red-500 dark:hover:text-red-400"

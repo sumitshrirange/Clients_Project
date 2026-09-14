@@ -23,27 +23,38 @@ const ROTATIONS = [-3, -1.5, 0, 1.5, 3];
 // tint, cycled by category name so the same category always reads the same
 // color across the whole gallery.
 const CATEGORY_PALETTE = [
-  { pill: "bg-primary text-canvas", border: "hover:border-primary/50 dark:hover:border-primary-light/50" },
+  {
+    pill: "bg-primary text-canvas",
+    border: "hover:border-primary/50 dark:hover:border-primary-light/50",
+  },
   { pill: "bg-blue text-canvas", border: "hover:border-blue/50" },
   { pill: "bg-mint text-ink", border: "hover:border-mint/60" },
   { pill: "bg-cream text-ink", border: "hover:border-cream/70" },
-  { pill: "bg-ink text-canvas dark:bg-primary-light dark:text-ink", border: "hover:border-ink/30 dark:hover:border-primary-light/50" },
+  {
+    pill: "bg-ink text-canvas dark:bg-primary-light dark:text-ink",
+    border: "hover:border-ink/30 dark:hover:border-primary-light/50",
+  },
 ];
 
-const getCategoryStyle = (category) => CATEGORY_PALETTE[hashString(category) % CATEGORY_PALETTE.length];
+const getCategoryStyle = (category) =>
+  CATEGORY_PALETTE[hashString(category) % CATEGORY_PALETTE.length];
 const getRotation = (id) => ROTATIONS[hashString(id) % ROTATIONS.length];
 
 const ClassWorkGallery = ({ items, loading, limit, showFilters = true }) => {
   const [category, setCategory] = useState("All");
   const [activeIndex, setActiveIndex] = useState(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const categories = useMemo(
     () => ["All", ...new Set((items || []).map((i) => i.category))],
-    [items]
+    [items],
   );
 
   const filtered = useMemo(() => {
-    const base = category === "All" ? items || [] : (items || []).filter((i) => i.category === category);
+    const base =
+      category === "All"
+        ? items || []
+        : (items || []).filter((i) => i.category === category);
     return limit ? base.slice(0, limit) : base;
   }, [items, category, limit]);
 
@@ -58,7 +69,13 @@ const ClassWorkGallery = ({ items, loading, limit, showFilters = true }) => {
   }
 
   if (!items?.length) {
-    return <EmptyState icon={Images} title="Class work coming soon" description="Design exercises and experiments will appear here." />;
+    return (
+      <EmptyState
+        icon={Images}
+        title="Class work coming soon"
+        description="Design exercises and experiments will appear here."
+      />
+    );
   }
 
   return (
@@ -97,12 +114,22 @@ const ClassWorkGallery = ({ items, loading, limit, showFilters = true }) => {
                 whileHover={{ rotate: 0, y: -8, scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.35, delay: (i % 6) * 0.04, ease: [0.22, 1, 0.36, 1] }}
-                onClick={() => setActiveIndex(i)}
+                transition={{
+                  duration: 0.35,
+                  delay: (i % 6) * 0.04,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                onClick={() => {
+                  setActiveIndex(i);
+                  setActiveImageIndex(0);
+                }}
                 className={`group relative mb-7 w-full rounded-3xl overflow-hidden border-2 border-line dark:border-line-dark bg-white dark:bg-surface-dark text-left break-inside-avoid shadow-card hover:shadow-card-hover transition-shadow ${style.border}`}
               >
                 {/* Pin, as if the card were tacked to a corkboard */}
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-20 w-4 h-4 rounded-full bg-white dark:bg-surface-dark border-2 border-line dark:border-line-dark shadow-sm" aria-hidden="true">
+                <div
+                  className="absolute -top-2 left-1/2 -translate-x-1/2 z-20 w-4 h-4 rounded-full bg-white dark:bg-surface-dark border-2 border-line dark:border-line-dark shadow-sm"
+                  aria-hidden="true"
+                >
                   <Pin className="w-2.5 h-2.5 text-ink-faint dark:text-canvas/50 absolute inset-0 m-auto" />
                 </div>
 
@@ -113,6 +140,13 @@ const ClassWorkGallery = ({ items, loading, limit, showFilters = true }) => {
                       alt={item.title}
                       className="w-full h-auto object-cover group-hover:scale-[1.06] transition-transform duration-500"
                     />
+                  )}
+
+                  {item.images?.length > 1 && (
+                    <div className="absolute bottom-3 right-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/60 text-white text-xs backdrop-blur-sm">
+                      <Images className="w-3.5 h-3.5" />
+                      {item.images.length}
+                    </div>
                   )}
 
                   {/* Category sticker, overlapping the image's top-left corner */}
@@ -130,9 +164,13 @@ const ClassWorkGallery = ({ items, loading, limit, showFilters = true }) => {
 
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                     <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                      <p className="text-canvas font-display font-bold text-base leading-snug">{item.title}</p>
+                      <p className="text-canvas font-display font-bold text-base leading-snug">
+                        {item.title}
+                      </p>
                       {item.description && (
-                        <p className="text-canvas/70 text-xs mt-1 line-clamp-2">{item.description}</p>
+                        <p className="text-canvas/70 text-xs mt-1 line-clamp-2">
+                          {item.description}
+                        </p>
                       )}
                       <span className="inline-flex items-center gap-1.5 mt-2 text-canvas/80 text-xs">
                         <Eye className="w-3.5 h-3.5" /> View full size
@@ -148,9 +186,9 @@ const ClassWorkGallery = ({ items, loading, limit, showFilters = true }) => {
 
       <Lightbox
         item={activeIndex !== null ? filtered[activeIndex] : null}
+        imageIndex={activeImageIndex}
+        setImageIndex={setActiveImageIndex}
         onClose={() => setActiveIndex(null)}
-        onPrev={filtered.length > 1 ? () => setActiveIndex((i) => (i - 1 + filtered.length) % filtered.length) : undefined}
-        onNext={filtered.length > 1 ? () => setActiveIndex((i) => (i + 1) % filtered.length) : undefined}
       />
     </div>
   );

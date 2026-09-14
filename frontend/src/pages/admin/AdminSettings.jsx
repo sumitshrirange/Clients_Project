@@ -48,21 +48,21 @@ const AdminSettings = () => {
 
   return (
     <div>
-      <AdminPageHeader title="Portfolio Settings" description="Site-wide SEO and footer content." />
+      <AdminPageHeader title="Portfolio Settings" description="Footer content." />
 
       <form onSubmit={handleSubmit} className="bg-white dark:bg-surface-dark rounded-2xl border border-line dark:border-line-dark shadow-card p-6 space-y-5 max-w-2xl">
-        <Field label="Site Title">
+        {/* <Field label="Site Title">
           <TextInput value={form.siteTitle} onChange={(e) => setForm((f) => ({ ...f, siteTitle: e.target.value }))} />
         </Field>
         <Field label="Meta Description">
           <TextArea value={form.metaDescription} onChange={(e) => setForm((f) => ({ ...f, metaDescription: e.target.value }))} />
-        </Field>
+        </Field> */}
         <Field label="Footer Headline">
           <TextInput value={form.footerHeadline} onChange={(e) => setForm((f) => ({ ...f, footerHeadline: e.target.value }))} />
         </Field>
-        <Field label="Contact Email">
+        {/* <Field label="Contact Email">
           <TextInput type="email" value={form.contactEmail} onChange={(e) => setForm((f) => ({ ...f, contactEmail: e.target.value }))} />
-        </Field>
+        </Field> */}
 
         <div className="grid sm:grid-cols-2 gap-4">
           <Field label="LinkedIn">

@@ -94,7 +94,7 @@ const AdminProfile = () => {
               onChange={(e) => setForm((f) => ({ ...f, socialLinks: { ...f.socialLinks, email: e.target.value } }))}
             />
           </Field>
-          <Field label="LinkedIn">
+          {/* <Field label="LinkedIn">
             <TextInput
               value={form.socialLinks?.linkedin || ""}
               onChange={(e) => setForm((f) => ({ ...f, socialLinks: { ...f.socialLinks, linkedin: e.target.value } }))}
@@ -111,7 +111,7 @@ const AdminProfile = () => {
               value={form.socialLinks?.dribbble || ""}
               onChange={(e) => setForm((f) => ({ ...f, socialLinks: { ...f.socialLinks, dribbble: e.target.value } }))}
             />
-          </Field>
+          </Field> */}
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">

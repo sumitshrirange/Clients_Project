@@ -144,7 +144,7 @@ const AdminClassWork = () => {
             <TextInput value={form.figmaUrl} onChange={(e) => setForm((f) => ({ ...f, figmaUrl: e.target.value }))} />
           </Field>
 
-          <Field label="Images" hint="New images are added to the existing gallery.">
+          <Field label="Images" hint="New image are added to the existing gallery. (upload 1 image at a time).">
             <FileInput multiple accept="image/*" onChange={(e) => setImages(e.target.files)} />
           </Field>
 

@@ -54,7 +54,7 @@ const Experience = ({ experience, loading }) => {
               {experience.map((role, i) => (
                 <motion.div
                   key={role._id}
-                  initial={{ opacity: 0, x: -20, y: 20 }}
+                  initial={{ opacity: 0, x: 0, y: 20 }}
                   whileInView={{ opacity: 1, x: 0, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}

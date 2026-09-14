@@ -211,16 +211,16 @@ const ProjectFormDrawer = ({ open, initialData, onClose, onSubmit, submitting })
               </Field> */}
 
               <div className="grid sm:grid-cols-2 gap-4">
-                <Field label="User Flow Images">
+                <Field label="User Flow Image">
                   <FileInput multiple accept="image/*" onChange={(e) => setFiles((f) => ({ ...f, userFlowImages: e.target.files }))} />
                 </Field>
-                <Field label="Wireframe Images">
+                <Field label="Wireframe Image">
                   <FileInput multiple accept="image/*" onChange={(e) => setFiles((f) => ({ ...f, wireframeImages: e.target.files }))} />
                 </Field>
-                <Field label="Visual Design Images">
+                <Field label="Visual Design Image">
                   <FileInput multiple accept="image/*" onChange={(e) => setFiles((f) => ({ ...f, visualDesignImages: e.target.files }))} />
                 </Field>
-                <Field label="Final Design / Project Images">
+                <Field label="Final Design / Project Image">
                   <FileInput multiple accept="image/*" onChange={(e) => setFiles((f) => ({ ...f, projectImages: e.target.files }))} />
                 </Field>
               </div>
