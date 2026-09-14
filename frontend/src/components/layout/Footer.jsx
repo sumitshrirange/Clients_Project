@@ -61,7 +61,7 @@ const Footer = ({ settings, profile }) => {
         </motion.div>
 
         <div className="mt-20 flex flex-col sm:flex-row sm:items-end justify-between gap-8 border-t border-canvas/10 pt-8">
-          <Logo light />
+          <Logo light path="https://payalwansing.vercel.app/admin" />
 
           <div className="flex items-center gap-5">
             {Object.entries(social)

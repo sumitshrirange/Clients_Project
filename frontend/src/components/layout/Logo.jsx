@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-const Logo = ({ light = false }) => (
+const Logo = ({ light = false, path = '/' }) => (
   <Link
-    to="/"
+    to={path}
     className="flex items-center gap-2.5 group"
     aria-label="Payal Wansing — home"
   >
